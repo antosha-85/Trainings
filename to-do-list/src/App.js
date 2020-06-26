@@ -44,6 +44,16 @@ class App extends Component {
     this.setState({list: updatedList})
   }
   render() {
+    let todoList = <p>You have no todos!</p>
+    if(this.state.list.length > 0) {
+      todoList = this.state.list.map(item => {
+        return (
+        <li key={item.id}>{item.value}<button
+        onClick={()=> this.deleteItem(item.id)}>X</button></li>
+        
+        )
+      })
+    }
     return (
       <div className="App">
         <div>
@@ -58,13 +68,14 @@ class App extends Component {
           </input>
             <button onClick={this.addItem}>Add</button>
             <ul>
-              {this.state.list.map(item => {
+              {/* {this.state.list.map(item => {
                 return (
                 <li key={item.id}>{item.value}<button
                 onClick={()=> this.deleteItem(item.id)}>X</button></li>
                 
                 )
-              })}
+              })} */}
+              {todoList}
             </ul>
         </div>
       </div>
