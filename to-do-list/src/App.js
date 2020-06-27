@@ -17,13 +17,12 @@ class App extends Component {
   };
 
   addItem = () => {
-    
     //create item with unique id
     const newItem = {
       id: 1 + Math.random(),
       value: this.state.newItem.slice(),
     };
-    console.log("App -> addItem -> newItem", newItem)
+    console.log("App -> addItem -> newItem", newItem);
     // copy of current list of items
     const list = [...this.state.list];
     //add new Item to list
@@ -36,23 +35,24 @@ class App extends Component {
     });
   };
 
-  deleteItem = id => {
+  deleteItem = (id) => {
     //copy current list of items
-    const list = [...this.state.list]
+    const list = [...this.state.list];
     //filter out item being deleted
-    const updatedList = list.filter(item => item.id !== id)
-    this.setState({list: updatedList})
-  }
+    const updatedList = list.filter((item) => item.id !== id);
+    this.setState({ list: updatedList });
+  };
   render() {
-    let todoList = <p>You have no todos!</p>
-    if(this.state.list.length > 0) {
-      todoList = this.state.list.map(item => {
+    let todoList = <p>You have no todos!</p>;
+    if (this.state.list.length > 0) {
+      todoList = this.state.list.map((item) => {
         return (
-        <li key={item.id}>{item.value}<button
-        onClick={()=> this.deleteItem(item.id)}>X</button></li>
-        
-        )
-      })
+          <li key={item.id}>
+            {item.value}
+            <button onClick={() => this.deleteItem(item.id)}>X</button>
+          </li>
+        );
+      });
     }
     return (
       <div className="App">
@@ -64,19 +64,9 @@ class App extends Component {
             placeholder="Type item here"
             value={this.state.newItem}
             onChange={(e) => this.updateInput("newItem", e.target.value)}
-          >
-          </input>
-            <button onClick={this.addItem}>Add</button>
-            <ul>
-              {/* {this.state.list.map(item => {
-                return (
-                <li key={item.id}>{item.value}<button
-                onClick={()=> this.deleteItem(item.id)}>X</button></li>
-                
-                )
-              })} */}
-              {todoList}
-            </ul>
+          ></input>
+          <button onClick={this.addItem}>Add</button>
+          <ul>{todoList}</ul>
         </div>
       </div>
     );
