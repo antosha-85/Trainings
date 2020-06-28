@@ -18,16 +18,24 @@ const reducer = (state = initialState, action) => {
       list.push(newItem);
 
       // update state with new list and reset newItem input
-      setState({
+      this.setState({
         list,
         newItem: "",
       });
+      break;
     case actionTypes.DELETE_ITEM:
       //copy current list of items
-      const list = [...state.list];
+      const list1 = [...state.list];
       //filter out item being deleted
-      const updatedList = list.filter((item) => item.id !== id);
-      setState({ list: updatedList });
+      const updatedList = list1.filter((item) => item.id !== action.id);
+      this.setState({ list: updatedList });
+      break;
+      case actionTypes.UPDATE_INPUT: 
+      const state = {...state}
+      this.setState({
+        [action.key]: action.value,
+      });
+      break;
       default:
           return state
   }
