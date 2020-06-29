@@ -1,8 +1,12 @@
 import React from 'react';
+import { createStore } from 'redux'
+import todoApp from './reducers'
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
+
+const store = createStore(todoApp)
 
 ReactDOM.render(
   <React.StrictMode>
