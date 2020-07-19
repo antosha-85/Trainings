@@ -6,7 +6,7 @@ import {
   VisibilityFilters,
 } from "./actions";
 
-const { SHOW_ALL } = VisibilityFilters;
+// const { SHOW_ALL } = VisibilityFilters;
 
 //don't need this initial state any longer
 
@@ -15,7 +15,7 @@ const { SHOW_ALL } = VisibilityFilters;
 //   todos: [],
 // };
 
-function visibilityFilter(state = SHOW_ALL, action) {
+function visibilityFilter(state = VisibilityFilters.SHOW_ALL, action) {
   switch (action.type) {
     case SET_VISIBILITY_FILTER:
       return action.filter;
@@ -32,17 +32,20 @@ function todos(state = [], action) {
         {
           text: action.text,
           completed: false,
+          id: action.id
         },
       ];
     case TOGGLE_TODO:
-      return state.map((todo, index) => {
-        if (index === action.index) {
-          return Object.assign({}, todo, {
-            completed: !todo.completed,
-          });
-        }
-        return todo;
-      });
+      // return state.map((todo, index) => {
+      //   if (todo.index === action.index) {
+      //     return Object.assign({}, todo, {
+      //       completed: !todo.completed,
+      //     });
+      //   }
+      //   return todo;
+      // });
+      return state.map(todo => 
+        todo.id === action.id ? { ...todo, completed: !todo.completed}: todo)
     default:
       return state;
   }

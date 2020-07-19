@@ -13,7 +13,7 @@ const Link = ({ active, children, onClick }) => (
   </button>
 );
 
-Link.PropTypes = {
+Link.propTypes = {
   active: PropTypes.bool.isRequired,
   children: PropTypes.node.isRequired,
   onClick: PropTypes.func.isRequired,
