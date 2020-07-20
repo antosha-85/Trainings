@@ -615,7 +615,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* WEBPACK VAR INJECTION */(f
 
 /***/ }),
 
-/***/ 1:
+/***/ 2:
 /*!**************************************************************************************************************************************************************!*\
   !*** multi next-client-pages-loader?page=%2F&absolutePagePath=%2Fhome%2Fantosha-85%2Flighthouse%2FAfterLHL%2Fhello-world%2FNext.js%20Max%2Fpages%2Findex.js ***!
   \**************************************************************************************************************************************************************/
@@ -638,4 +638,4 @@ eval("module.exports = dll_ec7d9c0249b2ef52b74c;//# sourceURL=[module]\n//# sour
 
 /***/ })
 
-},[[1,"static/runtime/webpack.js"]]]);
+},[[2,"static/runtime/webpack.js"]]]);
