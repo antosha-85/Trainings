@@ -1,7 +1,7 @@
 module.exports =
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
-/******/ 	var installedModules = {};
+/******/ 	var installedModules = require('../../../ssr-module-cache.js');
 /******/
 /******/ 	// The require function
 /******/ 	function __webpack_require__(moduleId) {
@@ -88,23 +88,86 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = "KqAr");
+/******/ 	return __webpack_require__(__webpack_require__.s = 1);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ "KqAr":
+/***/ 1:
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__("bFWz");
+
+
+/***/ }),
+
+/***/ "HJQg":
+/***/ (function(module, exports) {
+
+module.exports = require("styled-jsx/style");
+
+/***/ }),
+
+/***/ "bFWz":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+// ESM COMPAT FLAG
 __webpack_require__.r(__webpack_exports__);
 
-    
+// EXTERNAL MODULE: external "react"
+var external_react_ = __webpack_require__("cDcd");
+var external_react_default = /*#__PURE__*/__webpack_require__.n(external_react_);
 
-    /* harmony default export */ __webpack_exports__["default"] = (function (ctx) {
-      return Promise.all([])
-    });
-  
+// EXTERNAL MODULE: external "styled-jsx/style"
+var style_ = __webpack_require__("HJQg");
+var style_default = /*#__PURE__*/__webpack_require__.n(style_);
+
+// CONCATENATED MODULE: ./components/User.js
+
+var __jsx = external_react_default.a.createElement;
+
+
+const user = props => __jsx("div", {
+  className: "jsx-4268907469"
+}, __jsx("h1", {
+  className: "jsx-4268907469"
+}, props.name), __jsx("p", {
+  className: "jsx-4268907469"
+}, "Age: ", props.age), __jsx(style_default.a, {
+  id: "4268907469"
+}, ["div.jsx-4268907469{border:1px solid #eee;box-shadow:0 2px 3px #ccc;padding:20px;text-align:center;}"]));
+
+/* harmony default export */ var User = (user);
+// CONCATENATED MODULE: ./pages/auth/index.js
+var auth_jsx = external_react_default.a.createElement;
+
+
+
+const authIndexPage = props => auth_jsx("div", null, auth_jsx("h1", null, "The Auth Index Page - ", props.appName), auth_jsx(User, {
+  name: "Anton",
+  age: 35
+}));
+
+authIndexPage.getInitialProps = context => {
+  const promise = new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve({
+        appName: "Super App(Auth part)"
+      });
+    }, 1000);
+  });
+  return promise;
+};
+
+/* harmony default export */ var auth = __webpack_exports__["default"] = (authIndexPage);
+
+/***/ }),
+
+/***/ "cDcd":
+/***/ (function(module, exports) {
+
+module.exports = require("react");
 
 /***/ })
 
