@@ -1,25 +1,39 @@
-import React, {useState} from 'react';
+import React, { useState } from "react";
 
-import IngredientForm from './IngredientForm';
-import IngredientList from './IngredientList'
+import IngredientForm from "./IngredientForm";
+import IngredientList from "./IngredientList";
 
-import Search from './Search';
+import Search from "./Search";
 
 function Ingredients() {
-const [userIngredients, setUserIngredients] = useState([])
-console.log("Ingredients -> userIngredients", userIngredients)
-const addIngredientHandler = ingredient => {
-  setUserIngredients(prevIngredients => [
-    ...prevIngredients, 
-    {id: Math.random().toString(), ...ingredient}])
-}
+  const [userIngredients, setUserIngredients] = useState([]);
+  console.log("Ingredients -> userIngredients", userIngredients);
+  const addIngredientHandler = (ingredient) => {
+    fetch("https://react-hooks-update-e9a47.firebaseio.com/ingredients.json", {
+      method: "POST",
+      body: JSON.stringify(ingredient),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }).then((response) => {
+    console.log("addIngredientHandler -> response", response)
+      return response.json()
+      .then((responseData) => {
+        setUserIngredients((prevIngredients) => [
+          ...prevIngredients,
+          { id: responseData.name, ...ingredient },
+        ]);
+        console.log("addIngredientHandler -> responseData", responseData)
+      });
+    });
+  };
   return (
     <div className="App">
-      <IngredientForm onAddIngredient={addIngredientHandler}/>
+      <IngredientForm onAddIngredient={addIngredientHandler} />
 
       <section>
         <Search />
-        <IngredientList ingredients={userIngredients} onRemoveItem={()=>{}}/>
+        <IngredientList ingredients={userIngredients} onRemoveItem={() => {}} />
       </section>
     </div>
   );
