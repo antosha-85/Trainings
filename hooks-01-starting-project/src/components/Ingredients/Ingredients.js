@@ -18,11 +18,42 @@ const ingredientReducer = (currentIngredients, action) => {
   }
 };
 
+const httpReducer = (currentHttpState, action) => {
+  switch (action.type) {
+    case "SEND":
+      return {
+        loading: true,
+        error: null,
+      };
+    case "RESPONSE":
+      return {
+        ...currentHttpState,
+        loading: false,
+      };
+    case "ERROR":
+      return {
+        loading: false,
+        error: action.errorMessage,
+      };
+    case "CLEAR":
+      return {
+        ...currentHttpState,
+        error: null,
+      };
+    default:
+      throw new Error("Should not be reached!");
+  }
+};
+
 const Ingredients = () => {
   const [userIngredients, dispatch] = useReducer(ingredientReducer, []);
   // const [userIngredients, setUserIngredients] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState();
+  const [httpState, dispatchHttp] = useReducer(httpReducer, {
+    loading: false,
+    error: null,
+  });
+  // const [isLoading, setIsLoading] = useState(false);
+  // const [error, setError] = useState();
 
   // useEffect(() => {
   //   setIsLoading(true);
@@ -58,14 +89,16 @@ const Ingredients = () => {
   }, []);
 
   const addIngredientHandler = (ingredient) => {
-    setIsLoading(true);
+    // setIsLoading(true);
+    dispatchHttp({ type: "SEND" });
     fetch("https://react-hooks-update-e9a47.firebaseio.com/ingredients.json", {
       method: "POST",
       body: JSON.stringify(ingredient),
       headers: { "Content-Type": "application/json" },
     })
       .then((response) => {
-        setIsLoading(false);
+        // setIsLoading(false);
+        dispatchHttp({ type: "RESPONSE" });
         return response.json();
       })
       .then((responseData) => {
@@ -84,7 +117,8 @@ const Ingredients = () => {
   };
 
   const removeIngredientHandler = (ingredientId) => {
-    setIsLoading(true);
+    // setIsLoading(true);
+    dispatchHttp({ type: "SEND" });
     fetch(
       `https://react-hooks-update-e9a47.firebaseio.com/ingredients/${ingredientId}.json`,
       {
@@ -92,27 +126,30 @@ const Ingredients = () => {
       }
     )
       .then((response) => {
-        setIsLoading(false);
-        // setUserIngredients((prevIngredients) =>
+        // setIsLoading(false);
+
+        dispatchHttp({ type: "RESPONSE" }); // setUserIngredients((prevIngredients) =>
         //   prevIngredients.filter((ingredient) => ingredient.id !== ingredientId)
         // );
         dispatch({ type: "DELETE", id: ingredientId });
       })
       .catch((error) => {
-        setError(error.message);
-        setIsLoading(false);
+        // setError(error.message);
+        // setIsLoading(false);
+        dispatchHttp({ type: "ERROR", errorMessage: error.message });
       });
   };
 
   const clearError = () => {
-    setError(null);
+    // setError(null);
+dispatchHttp({type: 'CLEAR'})
   };
   return (
     <div className="App">
-      {error && <ErrorModal onClose={clearError}>{error}</ErrorModal>}
+      {httpState.error && <ErrorModal onClose={clearError}>{httpState.error}</ErrorModal>}
       <IngredientForm
         onAddIngredient={addIngredientHandler}
-        loading={isLoading}
+        loading={httpState.loading}
       />
 
       <section>
