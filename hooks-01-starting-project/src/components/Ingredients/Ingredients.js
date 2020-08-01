@@ -88,7 +88,7 @@ const Ingredients = () => {
     });
   }, []);
 
-  const addIngredientHandler = (ingredient) => {
+  const addIngredientHandler = useCallback((ingredient) => {
     // setIsLoading(true);
     dispatchHttp({ type: "SEND" });
     fetch("https://react-hooks-update-e9a47.firebaseio.com/ingredients.json", {
@@ -114,9 +114,9 @@ const Ingredients = () => {
           },
         });
       });
-  };
-
-  const removeIngredientHandler = (ingredientId) => {
+  }, [dispatchHttp]);
+//adding a dependancy dispatchHttp is not necessary it's managed by React and will not cause rerender
+  const removeIngredientHandler = useCallback((ingredientId) => {
     // setIsLoading(true);
     dispatchHttp({ type: "SEND" });
     fetch(
@@ -138,7 +138,7 @@ const Ingredients = () => {
         // setIsLoading(false);
         dispatchHttp({ type: "ERROR", errorMessage: error.message });
       });
-  };
+  }, []);
 
   const clearError = () => {
     // setError(null);
