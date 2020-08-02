@@ -1,5 +1,13 @@
 import { useReducer, useCallback } from "react";
 
+const initialState = {
+  loading: false,
+  error: null,
+  data: null, 
+  extra: null, 
+  identifier: null,
+}
+
 const httpReducer = (currentHttpState, action) => {
   switch (action.type) {
     case "SEND":
@@ -7,12 +15,15 @@ const httpReducer = (currentHttpState, action) => {
         loading: true,
         error: null,
         data: null,
+        extra: null,
+        identifier: action.identifier,
       };
     case "RESPONSE":
       return {
         ...currentHttpState,
         loading: false,
-        data: action.responseData
+        data: action.responseData,
+        extra: action.extra,
       };
     case "ERROR":
       return {
@@ -20,24 +31,19 @@ const httpReducer = (currentHttpState, action) => {
         error: action.errorMessage,
       };
     case "CLEAR":
-      return {
-        ...currentHttpState,
-        error: null,
-      };
+      return initialState
     default:
       throw new Error("Should not be reached!");
   }
 };
 
 const useHttp = () => {
-  const [httpState, dispatchHttp] = useReducer(httpReducer, {
-    loading: false,
-    error: null,
-    data: null,
-  });
+  const [httpState, dispatchHttp] = useReducer(httpReducer, initialState);
 
-  const sendRequest = useCallback((url, method, body) => {
-    dispatchHttp({ type: "SEND" });
+  const clear = useCallback(()=> dispatchHttp({type: 'CLEAR'}), [])
+
+  const sendRequest = useCallback((url, method, body, reqExtra, reqIdentifier) => {
+    dispatchHttp({ type: "SEND", identifier: reqIdentifier });
     fetch(url, {
       method: method,
       body: body,
@@ -46,26 +52,28 @@ const useHttp = () => {
       },
     })
       .then((response) => {
-          return response.json()
-        // dispatchHttp({ type: "RESPONSE" }); 
-        // dispatch({ type: "DELETE", id: ingredientId });
+        return response.json();
       })
-      .then(responseData => {
-          dispatchHttp({type: 'RESPONSE', responseData: responseData})
+      .then((responseData) => {
+        dispatchHttp({
+          type: "RESPONSE",
+          responseData: responseData,
+          extra: reqExtra,
+        });
       })
       .catch((error) => {
-        // setError(error.message);
-        // setIsLoading(false);
         dispatchHttp({ type: "ERROR", errorMessage: error.message });
       });
   }, []);
   return {
-      isLoading: httpState.loading, 
-      data: httpState.data,
-      error: httpState.error,
-      sendRequest,
-
-  }
+    isLoading: httpState.loading,
+    data: httpState.data,
+    error: httpState.error,
+    sendRequest,
+    reqExtra: httpState.extra,
+    reqIdentifier: httpState.identifier,
+    clear,
+  };
 };
 
 export default useHttp;
