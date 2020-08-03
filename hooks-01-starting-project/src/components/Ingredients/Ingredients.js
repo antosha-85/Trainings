@@ -48,7 +48,15 @@ const ingredientReducer = (currentIngredients, action) => {
 
 const Ingredients = () => {
   const [userIngredients, dispatch] = useReducer(ingredientReducer, []);
-  const { isLoading, data, error, sendRequest, reqExtra, reqIdentifier, clear } = useHttp();
+  const {
+    isLoading,
+    data,
+    error,
+    sendRequest,
+    reqExtra,
+    reqIdentifier,
+    clear,
+  } = useHttp();
   // const [userIngredients, setUserIngredients] = useState([]);
   // const [httpState, dispatchHttp] = useReducer(httpReducer, {
   //   loading: false,
@@ -79,9 +87,9 @@ const Ingredients = () => {
   // }, []);
 
   useEffect(() => {
-    if (!isLoading && reqIdentifier === 'REMOVE_INGREDIENT') {
+    if (!isLoading && reqIdentifier === "REMOVE_INGREDIENT") {
       dispatch({ type: "DELETE", id: reqExtra });
-    } else if (!isLoading && !error && reqIdentifier === 'ADD_INGREDIENT') {
+    } else if (!isLoading && !error && reqIdentifier === "ADD_INGREDIENT") {
       dispatch({ type: "ADD", ingredient: { id: data.name, ...reqExtra } });
     }
     // console.log("RENDERING INGREDIENTS", userIngredients);
@@ -132,7 +140,8 @@ const Ingredients = () => {
       //         },
       //       });
       //     });
-    }, [sendRequest]
+    },
+    [sendRequest]
     // [dispatchHttp]
   );
   //adding a dependancy dispatchHttp is not necessary it's managed by React and will not cause rerender
