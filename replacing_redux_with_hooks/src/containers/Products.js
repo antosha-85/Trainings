@@ -1,16 +1,18 @@
-import React, {useContext} from 'react';
-import { useSelector } from 'react-redux';
+import React from "react";
+// import { useSelector } from 'react-redux';
 
-import ProductItem from '../components/Products/ProductItem';
-import {ProductsContext} from '../context/products_context'
-import './Products.css';
+import ProductItem from "../components/Products/ProductItem";
+import { useStore } from "../hooks_store/store";
+// import {ProductsContext} from '../context/products_context'
+import "./Products.css";
 
-const Products = props => {
+const Products = (props) => {
+  const state = useStore()[0];
   // const productList = useSelector(state => state.shop.products);
-  const productsList = useContext(ProductsContext).products1
+  // const productsList = useContext(ProductsContext).products1
   return (
     <ul className="products-list">
-      {productsList.map(prod => (
+      {state.products.map((prod) => (
         <ProductItem
           key={prod.id}
           id={prod.id}
