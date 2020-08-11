@@ -22,3 +22,9 @@ export const useStore = () => {
   return [globalState, dispatch]
 };
 
+export const initStore = (userActions, initialState) => {
+    if(initialState) {
+        globalState = { ...globalState, ...initialState}
+    }
+    actions = {...actions, ...userActions}
+}
