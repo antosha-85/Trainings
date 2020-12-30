@@ -23,14 +23,34 @@ class App extends Component {
     ],
   };
 
-  handleComplete = (id) => {
-    console.log(id);
+  toggleComplete = (id) => {
+    this.setState({
+      todos: this.state.todos.map((todo) => {
+        if (todo.id === id) {
+          todo.completed = !todo.completed;
+        }
+        return todo;
+      }),
+    });
   };
+
+  deleteTodo = (id) => {
+    this.setState({
+      todos: [...this.state.todos.filter((todo) => {
+        return todo.id !== id;
+      })],
+    });
+  };
+
   render() {
     return (
       <div className="App">
         <h1>App</h1>
-        <Todos todos={this.state.todos} handleComplete={this.handleComplete} />
+        <Todos
+          todos={this.state.todos}
+          toggleComplete={this.toggleComplete}
+          deleteTodo={this.deleteTodo}
+        />
       </div>
     );
   }

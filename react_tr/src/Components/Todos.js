@@ -9,7 +9,8 @@ export default class Todos extends Component {
       <TodoItem
         todo={todo}
         key={todo.id}
-        handleComplete={this.props.handleComplete}
+        toggleComplete={this.props.toggleComplete}
+        deleteTodo={this.props.deleteTodo}
       />
     ));
   }
