@@ -6,16 +6,22 @@ export class TodoItem extends Component {
     return {
       background: "#f4ff4f4",
       padding: "10px",
-      borderBottom: '1px #ccc dotted',
+      borderBottom: "1px #ccc dotted",
       textDecoration: this.props.todo.completed ? "line-through" : "none",
     };
   };
+
   render() {
+    const { id, title } = this.props.todo;
     return (
       <div style={this.getStyle()}>
         <p>
-            <input type="checkbox"/> {' '}
-            {this.props.todo.title}</p>
+          <input
+            type="checkbox"
+            onChange={this.props.handleComplete.bind(this, id)}
+          />{" "}
+          {title}
+        </p>
       </div>
     );
   }
