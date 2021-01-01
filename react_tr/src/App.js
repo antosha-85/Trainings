@@ -3,22 +3,22 @@ import "./App.css";
 import Todos from "./Components/Todos";
 import Header from "./Components/Layout/Header";
 import AddTodo from "./Components/AddTodo";
-
+import {v4 as uuidv4} from "uuid";
 class App extends Component {
   state = {
     todos: [
       {
-        id: 1,
+        id: uuidv4(),
         title: "Take out the trash",
         completed: true,
       },
       {
-        id: 2,
+        id: uuidv4(),
         title: "Dinner with Oksana",
         completed: false,
       },
       {
-        id: 3,
+        id: uuidv4(),
         title: "Roll out spools in the bush",
         completed: false,
       },
@@ -46,12 +46,27 @@ class App extends Component {
     });
   };
 
+  addTodo = (title) => {
+    const newTodo = {
+      id: uuidv4(),
+      title,
+      completed: false,
+    };
+    this.setState({
+      todos: [...this.state.todos, newTodo],
+      // todos: [...this.state.todos.concat({
+      //   title:todo,
+      //   completed: false,
+      //   id: this.state.todos.length + 1
+      // })]
+    });
+  };
   render() {
     return (
       <div className="App">
         <div className="container">
           <Header />
-          <AddTodo />
+          <AddTodo AddTodo={this.addTodo} />
           <Todos
             todos={this.state.todos}
             toggleComplete={this.toggleComplete}
