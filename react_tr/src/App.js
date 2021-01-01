@@ -1,9 +1,11 @@
 import React, { Component } from "react";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 import "./App.css";
 import Todos from "./Components/Todos";
 import Header from "./Components/Layout/Header";
 import AddTodo from "./Components/AddTodo";
-import {v4 as uuidv4} from "uuid";
+import About from "./Components/pages/About";
+import { v4 as uuidv4 } from "uuid";
 class App extends Component {
   state = {
     todos: [
@@ -63,17 +65,28 @@ class App extends Component {
   };
   render() {
     return (
-      <div className="App">
-        <div className="container">
-          <Header />
-          <AddTodo AddTodo={this.addTodo} />
-          <Todos
-            todos={this.state.todos}
-            toggleComplete={this.toggleComplete}
-            deleteTodo={this.deleteTodo}
-          />
+      <Router>
+        <div className="App">
+          <div className="container">
+            <Header />
+            <Route
+              exact
+              path="/"
+              render={(props) => (
+                <>
+                  <AddTodo AddTodo={this.addTodo} />
+                  <Todos
+                    todos={this.state.todos}
+                    toggleComplete={this.toggleComplete}
+                    deleteTodo={this.deleteTodo}
+                  />
+                </>
+              )}
+            />
+            <Route exact path="/about" render={(props) => <About />} />
+          </div>
         </div>
-      </div>
+      </Router>
     );
   }
 }
