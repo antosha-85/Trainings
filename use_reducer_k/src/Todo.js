@@ -23,7 +23,16 @@ export default function Todo({ todo, dispatch1 }) {
       >
         Toggle Todo
       </button>
-      <button>Delete Todo</button>
+      <button
+        onClick={() =>
+          dispatch1({
+            type: ACTIONS1.DELETE_TODO,
+            payload: { currentId: todo.id },
+          })
+        }
+      >
+        Delete Todo
+      </button>
     </div>
   );
 }

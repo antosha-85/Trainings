@@ -9,6 +9,7 @@ const ACTIONS = {
 export const ACTIONS1 = {
   ADD_TODO: "addTodo",
   TOGGLE_TODO: "toggleTodo",
+  DELETE_TODO: "deleteTodo",
 };
 const reducer = (state, action) => {
   switch (action.type) {
@@ -32,6 +33,10 @@ const reducer1 = (todos, action) => {
         }
         return todo;
       });
+    case ACTIONS1.DELETE_TODO:
+      return [...todos.filter((todo) => {
+        return todo.id !== action.payload.currentId;
+      })];
     default:
       return todos;
   }
@@ -59,7 +64,7 @@ function App() {
     e.preventDefault();
     dispatch1({
       type: ACTIONS1.ADD_TODO,
-      payload: { name: name},
+      payload: { name: name },
     });
     console.log("form was submitted");
     setName("");
@@ -81,7 +86,7 @@ function App() {
         {/* <button>Submit</button> */}
       </form>
       {todos.map((todo) => {
-        return <Todo key={todo.id} todo={todo} dispatch1={dispatch1}/>;
+        return <Todo key={todo.id} todo={todo} dispatch1={dispatch1} />;
       })}
     </div>
   );
