@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Anton from "./Anton";
-import People from './People'
+import People from "./People";
+import AddPeople from "./AddPeople";
 
 export default class App extends Component {
   state = {
@@ -19,9 +20,10 @@ export default class App extends Component {
     return (
       <div className="App">
         <h1>This is my React App component!</h1>
+        <AddPeople />
         <Anton name="Anton" age="35" gender="male" />
         <Anton name="Oksana" age="34" gender="female" />
-        <People people={this.state.people}/>
+        <People people={this.state.people} />
       </div>
     );
   }
