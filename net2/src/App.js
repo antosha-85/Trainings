@@ -16,11 +16,17 @@ export default class App extends Component {
       { name: "Vitalik", age: 34, gender: "male", id: 3 },
     ],
   };
+  addNewPerson = (person) => {
+    person.id = Math.random();
+    this.setState({
+      people: [...this.state.people, person],
+    });
+  };
   render() {
     return (
       <div className="App">
         <h1>This is my React App component!</h1>
-        <AddPeople />
+        <AddPeople addNewPerson={this.addNewPerson} />
         <Anton name="Anton" age="35" gender="male" />
         <Anton name="Oksana" age="34" gender="female" />
         <People people={this.state.people} />

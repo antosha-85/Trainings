@@ -13,7 +13,7 @@ export default class AddPeople extends Component {
   };
   handleSubmit = (e) => {
     e.preventDefault();
-    console.log(this.state);
+    this.props.addNewPerson(this.state);
   };
   render() {
     return (
