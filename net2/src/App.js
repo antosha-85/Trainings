@@ -22,6 +22,12 @@ export default class App extends Component {
       people: [...this.state.people, person],
     });
   };
+
+  deletePerson = (id) => {
+    this.setState({
+      people: [...this.state.people.filter(person => {
+        return person.id !== id
+      })]})};
   render() {
     return (
       <div className="App">
@@ -29,7 +35,7 @@ export default class App extends Component {
         <AddPeople addNewPerson={this.addNewPerson} />
         <Anton name="Anton" age="35" gender="male" />
         <Anton name="Oksana" age="34" gender="female" />
-        <People people={this.state.people} />
+        <People people={this.state.people} deletePerson={this.deletePerson}/>
       </div>
     );
   }

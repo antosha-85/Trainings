@@ -1,7 +1,7 @@
 import React from "react";
 
 const People = (props) => {
-  const { people } = props;
+  const { people, deletePerson } = props;
   return people.map((person) => {
     const { name, age, gender, id } = person;
     return age >= 2 ? (
@@ -10,6 +10,7 @@ const People = (props) => {
         <div>Age: {age}</div>
         <div>I'm {gender}</div>
         <div>Welcome, friends!</div>
+        <button onClick={() => deletePerson(id)}>Delete</button>
       </div>
     ) : null;
   });
