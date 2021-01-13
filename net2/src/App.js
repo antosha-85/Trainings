@@ -25,9 +25,27 @@ export default class App extends Component {
 
   deletePerson = (id) => {
     this.setState({
-      people: [...this.state.people.filter(person => {
-        return person.id !== id
-      })]})};
+      people: [
+        ...this.state.people.filter((person) => {
+          return person.id !== id;
+        }),
+      ],
+    });
+  };
+  componentDidMount() {
+    console.log("component mounted!");
+  }
+  componentDidUpdate(prevProps, prevState) {
+    console.log("component updated");
+    console.log(
+      "🚀 ~ file: App.js ~ line 35 ~ App ~ componentDidUpdate ~  prevState",
+      prevState
+    );
+    console.log(
+      "🚀 ~ file: App.js ~ line 35 ~ App ~ componentDidUpdate ~ prevProps",
+      prevProps
+    );
+  }
   render() {
     return (
       <div className="App">
@@ -35,7 +53,7 @@ export default class App extends Component {
         <AddPeople addNewPerson={this.addNewPerson} />
         <Anton name="Anton" age="35" gender="male" />
         <Anton name="Oksana" age="34" gender="female" />
-        <People people={this.state.people} deletePerson={this.deletePerson}/>
+        <People people={this.state.people} deletePerson={this.deletePerson} />
       </div>
     );
   }
