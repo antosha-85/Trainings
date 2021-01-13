@@ -1,0 +1,9 @@
+body {
+  background-color: pink;
+  transition: all 1s;
+}
+
+form {
+  background-color: #fff;
+  padding: 20px;
+}
