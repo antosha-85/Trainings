@@ -13,8 +13,8 @@ code {
 }
 
 .home .post img {
-  height: 150px;
-  width:150px;
+  height: 100px;
+  width:100px;
   position: absolute;
   top: 20px;
   left: 0;
@@ -23,5 +23,5 @@ code {
 
 .home .post {
   overflow: hidden;
-  padding-left: 160px;
+  padding-left: 100px;
 }
