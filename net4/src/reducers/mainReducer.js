@@ -13,7 +13,7 @@ const initState = {
         "Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo eius ipsa natus. Optio, dicta harum?",
     },
     {
-      id: 3,
+      id: "3",
       title: "Lorem ipsum dolor sit.",
       body:
         "Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo eius ipsa natus. Optio, dicta harum?",
@@ -22,7 +22,17 @@ const initState = {
 };
 
 const mainReducer = (state = initState, action) => {
-  return state;
+  if (action.type === "DELETE_POST") {
+    let newPosts = state.posts.filter((post) => {
+      return post.id !== action.id;
+    });
+    return {
+      ...state,
+      posts: newPosts,
+    };
+  } else {
+    return state;
+  }
 };
 
 export default mainReducer;
