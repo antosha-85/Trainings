@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
+import { createProject } from "../../store/actions/projectActions";
 
 class CreateProject extends Component {
   state = {
@@ -7,11 +9,9 @@ class CreateProject extends Component {
   };
   handleSubmit = (e) => {
     e.preventDefault();
-    console.log(this.state);
+    this.props.onCreateProject(this.state);
   };
   handleChange = (e) => {
-    console.log("e.target", e.target);
-    console.log("e.target in brackets", [e.target.id]);
     this.setState({
       [e.target.id]: e.target.value,
     });
@@ -43,4 +43,10 @@ class CreateProject extends Component {
   }
 }
 
-export default CreateProject;
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onCreateProject: (project) => dispatch(createProject(project)),
+  };
+};
+
+export default connect(null, mapDispatchToProps)(CreateProject);
