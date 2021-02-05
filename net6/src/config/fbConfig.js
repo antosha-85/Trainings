@@ -1,10 +1,11 @@
 import firebase from "firebase/app";
 import "firebase/firestore";
 import "firebase/auth";
+import "firebase/analytics";
 
 //Initialize Firebase
 
-const firebaseConfig = {
+var firebaseConfig = {
   apiKey: "AIzaSyDfl_292ivH3E3DVykqwAED7rMD7-b9yKs",
   authDomain: "anton-plan.firebaseapp.com",
   projectId: "anton-plan",
