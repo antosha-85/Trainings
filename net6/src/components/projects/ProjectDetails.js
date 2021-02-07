@@ -1,27 +1,48 @@
 import React from "react";
+import { connect } from "react-redux";
+import { firestoreConnect } from "react-redux-firebase";
+import { compose } from "redux";
 
 const ProjectDetails = (props) => {
-  return (
-    <div className="container section project-details">
-      <div className="card z-depth-0">
-        <div className="card-content">
-          <span className="card-title">
-            Project Title - {props.match.params.id}
-          </span>
-          <p>
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Animi
-            tenetur quia nobis nihil dicta, illum nostrum quam perspiciatis,
-            esse exercitationem doloremque. Dolore minus aliquid quo ea quos
-            optio non voluptatibus.
-          </p>
-        </div>
-        <div className="card-action grey lighten-4 grey-text">
-          <div>Posted by Anton Smirnov</div>
-          <div>Jan-28, 2021</div>
+  const {
+    project: { title, content, authorFirstName, authorLastName },
+  } = props;
+  if (title) {
+    return (
+      <div className="container section project-details">
+        <div className="card z-depth-0">
+          <div className="card-content">
+            <span className="card-title">{title}</span>
+            <p>{content}</p>
+          </div>
+          <div className="card-action grey lighten-4 grey-text">
+            <div>
+              Posted by {authorFirstName} {authorLastName}
+            </div>
+            <div>Jan-28, 2021</div>
+          </div>
         </div>
       </div>
-    </div>
-  );
+    );
+  } else {
+    return (
+      <div className="container center">
+        <p>Project loading...</p>
+      </div>
+    );
+  }
 };
 
-export default ProjectDetails;
+const mapStateToProps = (state, ownState) => {
+  const id = ownState.match.params.id;
+  const projects = state.firestore.data.Projects;
+  const project = projects ? projects[id] : null;
+  return {
+    project: project,
+  };
+};
+
+export default compose(
+  connect(mapStateToProps),
+  firestoreConnect([{ collection: "Projects" }])
+)(ProjectDetails);
