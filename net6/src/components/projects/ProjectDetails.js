@@ -5,19 +5,18 @@ import { compose } from "redux";
 
 const ProjectDetails = (props) => {
   const {
-    project: { title, content, authorFirstName, authorLastName },
-  } = props;
-  if (title) {
+    project } = props;
+  if (project) {
     return (
       <div className="container section project-details">
         <div className="card z-depth-0">
           <div className="card-content">
-            <span className="card-title">{title}</span>
-            <p>{content}</p>
+            <span className="card-title">{project.title}</span>
+            <p>{project.content}</p>
           </div>
           <div className="card-action grey lighten-4 grey-text">
             <div>
-              Posted by {authorFirstName} {authorLastName}
+              Posted by {project.authorFirstName} {project.authorLastName}
             </div>
             <div>Jan-28, 2021</div>
           </div>
