@@ -1,0 +1,61 @@
+[debug] [2021-02-14T21:13:04.364Z] ----------------------------------------------------------------------
+[debug] [2021-02-14T21:13:04.369Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\Не админ\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js deploy --only functions
+[debug] [2021-02-14T21:13:04.369Z] CLI Version:   9.3.0
+[debug] [2021-02-14T21:13:04.370Z] Platform:      win32
+[debug] [2021-02-14T21:13:04.370Z] Node Version:  v14.15.3
+[debug] [2021-02-14T21:13:04.372Z] Time:          Sun Feb 14 2021 14:13:04 GMT-0700 (Mountain Standard Time)
+[debug] [2021-02-14T21:13:04.372Z] ----------------------------------------------------------------------
+[debug] [2021-02-14T21:13:04.373Z] 
+[debug] [2021-02-14T21:13:04.390Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2021-02-14T21:13:04.392Z] > authorizing via signed-in user
+[debug] [2021-02-14T21:13:04.392Z] [iam] checking project anton-plan for permissions ["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get"]
+[debug] [2021-02-14T21:13:04.398Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/anton-plan:testIamPermissions  
+ {"permissions":["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get"]}
+[debug] [2021-02-14T21:13:04.862Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Sun, 14 Feb 2021 21:13:04 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","server-timing":"gfet4t7; dur=84","alt-svc":"h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2021-02-14T21:13:04.865Z] >>> HTTP REQUEST POST https://iam.googleapis.com/v1/projects/anton-plan/serviceAccounts/anton-plan@appspot.gserviceaccount.com:testIamPermissions  
+ {"permissions":["iam.serviceAccounts.actAs"]}
+[debug] [2021-02-14T21:13:05.328Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Sun, 14 Feb 2021 21:13:04 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[info] 
+[info] === Deploying to 'anton-plan'...
+[info] 
+[info] i  deploying functions 
+[debug] [2021-02-14T21:13:12.700Z] > [functions] package.json contents: {
+  "name": "functions",
+  "description": "Cloud Functions for Firebase",
+  "scripts": {
+    "serve": "firebase emulators:start --only functions",
+    "shell": "firebase functions:shell",
+    "start": "npm run shell",
+    "deploy": "firebase deploy --only functions",
+    "logs": "firebase functions:log"
+  },
+  "engines": {
+    "node": "12"
+  },
+  "main": "index.js",
+  "dependencies": {
+    "firebase-admin": "^9.2.0",
+    "firebase-functions": "^3.11.0"
+  },
+  "devDependencies": {
+    "firebase-functions-test": "^0.2.0"
+  },
+  "private": true
+}
+[info] i  functions: ensuring required API cloudfunctions.googleapis.com is enabled... 
+[info] i  functions: ensuring required API cloudbuild.googleapis.com is enabled... 
+[debug] [2021-02-14T21:13:15.928Z] >>> HTTP REQUEST GET https://serviceusage.googleapis.com/v1/projects/anton-plan/services/cloudfunctions.googleapis.com  
+ 
+[debug] [2021-02-14T21:13:15.930Z] >>> HTTP REQUEST GET https://serviceusage.googleapis.com/v1/projects/anton-plan/services/runtimeconfig.googleapis.com  
+ 
+[debug] [2021-02-14T21:13:15.931Z] >>> HTTP REQUEST GET https://serviceusage.googleapis.com/v1/projects/anton-plan/services/cloudbuild.googleapis.com  
+ 
+[debug] [2021-02-14T21:13:58.781Z] Error: socket hang up
+    at connResetException (internal/errors.js:607:14)
+    at TLSSocket.socketOnEnd (_http_client.js:493:23)
+    at TLSSocket.emit (events.js:327:22)
+    at TLSSocket.EventEmitter.emit (domain.js:467:12)
+    at endReadableNT (internal/streams/readable.js:1327:12)
+    at processTicksAndRejections (internal/process/task_queues.js:80:21)
+[error] 
+[error] Error: Server Error. socket hang up
