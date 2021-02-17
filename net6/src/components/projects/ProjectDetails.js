@@ -23,6 +23,7 @@ const ProjectDetails = (props) => {
               Posted by {project.authorFirstName} {project.authorLastName}
             </div>
             <div>{moment(project.createdAt.toDate()).calendar()}</div>
+            {console.log('project created at', project.createdAt)}
           </div>
         </div>
       </div>
