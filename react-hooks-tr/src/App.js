@@ -8,18 +8,22 @@ function App() {
   const [count2, setCount2] = useState(20);
   const [values, setValues] = useForm({ email: "", password: "", firstName: "" });
   // const [password, setPassword] = useState("");
-  // useEffect(()=> {
-  //   console.log('render')
-  //   return ()=> {
-  //     console.log('unmount!')
-  //   }
-  // }, [])
+  useEffect(()=> {
+    const onMouseMove = e => {
+      console.log('event', e)
+    }
+    console.log('render')
+    window.addEventListener('mousemove', onMouseMove)
+    return ()=> {
+    window.removeEventListener('mousemove', onMouseMove)  
+    }
+  }, [])
   const [showHello, setShowHello] = useState(true)
 
   return (
     <div className="App">
-      <button onClick={()=> setShowHello(!showHello)}>Toggle Hello!</button>
-      {showHello ? <Hello/> : null}
+      {/* <button onClick={()=> setShowHello(!showHello)}>Toggle Hello!</button>
+      {showHello ? <Hello/> : null} */}
       <button
         onClick={() => {
           setCount((currentCount) => currentCount + 1);
