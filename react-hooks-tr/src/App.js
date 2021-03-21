@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import "./App.css";
 import { Hello } from "./Hello";
 import { useFetch } from "./useFetch";
@@ -35,8 +35,8 @@ function App() {
   const [count3, setCount3] = useState(JSON.parse(localStorage.getItem("count3") || 0)
   );
   const { data, loading } = useFetch(`http://numbersapi.com/${count3}/trivia`);
-  console.log("🚀 ~ file: App.js ~ line 38 ~ App ~ data", data)
-  const [showHello, setShowHello] = useState(true);
+  // const [showHello, setShowHello] = useState(true);
+  const inputRef = useRef()
 
   useEffect(() => {
     localStorage.setItem("count3", JSON.stringify(count3));
@@ -66,6 +66,7 @@ function App() {
         value={values.email}
         onChange={setValues}
         placeholder="Email"
+        ref={inputRef}
       />
       <input
         type="text"
@@ -81,6 +82,9 @@ function App() {
         onChange={setValues}
         placeholder="Password"
       />
+      <button onClick={()=>{
+        console.log(inputRef.current)
+      }}>Focus</button>
     </div>
   );
 }
