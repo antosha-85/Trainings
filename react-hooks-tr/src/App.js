@@ -32,11 +32,12 @@ function App() {
   useEffect(() => {
     console.log("mount 2");
   }, []);
-  const [count3, setCount3] = useState(JSON.parse(localStorage.getItem("count3") || 0)
+  const [count3, setCount3] = useState(
+    JSON.parse(localStorage.getItem("count3") || 0)
   );
   const { data, loading } = useFetch(`http://numbersapi.com/${count3}/trivia`);
   // const [showHello, setShowHello] = useState(true);
-  const inputRef = useRef()
+  const inputRef = useRef();
 
   useEffect(() => {
     localStorage.setItem("count3", JSON.stringify(count3));
@@ -82,9 +83,14 @@ function App() {
         onChange={setValues}
         placeholder="Password"
       />
-      <button onClick={()=>{
-        console.log(inputRef.current)
-      }}>Focus</button>
+      <button
+        onClick={() => {
+          console.log(inputRef.current);
+          inputRef.current.focus();
+        }}
+      >
+        Focus
+      </button>
     </div>
   );
 }
