@@ -8,7 +8,7 @@ use feature 'switch';
 
 use v5.32;
 
-use lib 'lib';
+use lib '/lib';
 use Animal::Lion;
 use Animal::Cat;
 
