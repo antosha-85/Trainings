@@ -6,6 +6,7 @@ import com.company.state.BrushTool;
 import com.company.state.Canvas;
 import com.company.state.EraserTool;
 import com.company.state.SelectionTool;
+import com.company.state.abuse.Stopwatch;
 
 public class Main {
 
@@ -55,6 +56,10 @@ public class Main {
         canvas.setCurrentTool(new EraserTool());
         canvas.mouseDown();
         canvas.mouseUp();
+
+        var stopwatch = new Stopwatch();
+        stopwatch.click();
+        stopwatch.click();
    }
     public static void drawUIControl(UIControl control) {
         control.draw();
