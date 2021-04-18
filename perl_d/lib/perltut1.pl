@@ -8,6 +8,10 @@ use feature 'switch';
 
 use v5.32;
 
+use lib 'lib';
+use Animal::Lion;
+use Animal::Cat;
+
 print "Hello World\n";
 
 my $name = 'Anton';
@@ -350,3 +354,52 @@ sub factrorial {
 }
 
 say 'Factorial 4 = ', factrorial(4);
+
+my $emp_file = "employees.txt";
+
+open my $fh, '<', $emp_file
+or die "Can't Open File : $_";
+
+while (my $info = <$fh>) {
+    chomp($info);
+    my ($emp_name, $job, $id) = split /:/, $info;
+
+    print "$emp_name is a $job and has the id $id \n";
+}
+
+close $fh or die "Couldn't Close File : ", $_;
+
+open $fh, '>>', $emp_file
+or die "Can't Open File : ", $_;
+
+print $fh "Mark:Salesman:124\n";
+
+close $fh or die "Couldn't Close File : ", $_;
+
+open $fh, '+<', $emp_file
+or die "Can't Open File : ", $_;
+
+seek $fh, 0, 0;
+
+print $fh "Phil:Salemsan: 125\n";
+close $fh or die "Couldn't Close File : ", $_;
+
+# use lib 'lib';
+
+# use Animal::Cat;
+
+my $whiskers = new Animal::Cat("whiskers", "Anton");
+
+say $whiskers->getName();
+say $whiskers->getSound();
+
+$whiskers->setName("Whiskers");
+
+say $whiskers->getName();
+say $whiskers->getSound();
+
+
+
+my $king = new Animal::Lion('King', "No Owner");
+
+sya $king->getSound();
