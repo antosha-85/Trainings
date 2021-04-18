@@ -35,8 +35,9 @@ export default class App extends Component {
   componentDidMount() {
     console.log("component mounted!");
   }
-  componentDidUpdate(prevProps, prevState) {
+  componentDidUpdate(prevProps, prevState, snapshot) {
     console.log("component updated");
+    console.log("🚀 ~ file: App.js ~ line 39 ~ App ~ componentDidUpdate ~ snapshot", snapshot)
     console.log(
       "🚀 ~ file: App.js ~ line 35 ~ App ~ componentDidUpdate ~  prevState",
       prevState
@@ -45,6 +46,13 @@ export default class App extends Component {
       "🚀 ~ file: App.js ~ line 35 ~ App ~ componentDidUpdate ~ prevProps",
       prevProps
     );
+    console.log('checking current state', this.state)
+  }
+  shouldComponentUpdate(nextProps, nextState) {
+    console.log("🚀 ~ file: App.js ~ line 52 ~ App ~ shouldComponentUpdate ~ nextState", nextState)
+    console.log("🚀 ~ file: App.js ~ line 52 ~ App ~ shouldComponentUpdate ~ nextProps", nextProps)
+    console.log('calling from shoudl component update')
+    return true
   }
   render() {
     return (
