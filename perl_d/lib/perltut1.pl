@@ -189,3 +189,60 @@ print join(", ", @abcs), "\n";
 
 my $letter = 'c';
 say "Next Letter ", ++$letter;
+
+my @primes = (2, 3, 5, 7, 11, 13, 17);
+
+my @my_info = ("Anton", "Smirnov", "1st Avenue SW", 40, 6.25);
+
+$my_info[5] = "Calgary"; 
+
+for my $info (@my_info) {
+    say $info;
+}
+
+foreach my $num (@primes) {
+    say $num;
+}
+
+for (@my_info) {
+    say $_;
+}
+
+my @my_name = @my_info[0, 1];
+say @my_name;
+
+my $items = scalar @my_info;
+say $items;
+
+my ($f_name, $l_name, $address, $how_old, $height, $city) = @my_info;
+say "$f_name $l_name";
+
+say "Popped Value ", pop @my_info;
+say "Pushed Value ", push @primes, 17;
+say "First Item ", shift @primes;
+say 'Unshifted Item ', unshift @primes, 2;
+
+print join(", ", @primes), "\n";
+
+say "Remove Index 0 - 2", splice @primes, 0, 3;
+print join (", ", @primes), "\n";
+
+print join " ", ('list', 'of', 'words', "\n");
+
+my $customers = "Anton Oksana Kirill Boris";
+say $customers;
+my @cust_array = split(' ', $customers);
+say @cust_array;
+print join (", ", @cust_array), "\n";
+@cust_array = reverse @cust_array;
+say "Reversed array ", @cust_array;
+
+@cust_array = reverse sort @cust_array;
+say @cust_array;
+
+my @number_array = (1, 2, 3, 4, 5, 6, 7, 8);
+my @odds_array = grep {$_ % 2} @number_array;
+print join (", ", @odds_array), "\n";
+
+my @dbl_array = map {$_ * 2} @number_array;
+print join (", ", @dbl_array), "\n";
