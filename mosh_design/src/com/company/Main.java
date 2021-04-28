@@ -2,6 +2,10 @@ package com.company;
 
 import com.company.memento.Editor;
 import com.company.memento.History;
+import com.company.state.BrushTool;
+import com.company.state.Canvas;
+import com.company.state.EraserTool;
+import com.company.state.SelectionTool;
 
 public class Main {
 
@@ -44,8 +48,13 @@ public class Main {
         editor.setContent("c");
         editor.restore(history.pop());
         editor.restore(history.pop());
-        
+
         System.out.println(editor.getContent());
+
+        var canvas = new Canvas();
+        canvas.setCurrentTool(new EraserTool());
+        canvas.mouseDown();
+        canvas.mouseUp();
    }
     public static void drawUIControl(UIControl control) {
         control.draw();
